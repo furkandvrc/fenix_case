@@ -32,15 +32,28 @@ class SearchResults extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: paddingXL,
                 crossAxisSpacing: paddingXL,
-                childAspectRatio: 0.7,
+                childAspectRatio: 0.38,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: paddingXL, vertical: paddingXXXXL),
+              padding: const EdgeInsets.symmetric(horizontal: paddingM, vertical: paddingXXL),
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 final item = controller.searchedListMovies[index];
-                return _MovieCard(
-                  item.posterPath,
-                  item.title,
+                return SizedBox(
+                  child: Column(
+                    children: [
+                      _MovieCard(
+                        item.posterPath,
+                      ),
+                      const SizedBox(
+                        height: paddingXXXXXXXXL,
+                      ),
+                      Text(
+                        item.title ?? "",
+                        style: s18W700Dark,
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
                 );
               },
               itemCount: controller.searchedListMovies.length,

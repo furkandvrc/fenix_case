@@ -9,4 +9,4 @@ String generalIconPath = '${generalAssetPath}icons/';
 
 String errorIllustration = '${generalImagePath}error_illustration.svg';
 String logo = '${generalImagePath}logo.svg';
-String placeHolder = '${generalImagePath}placeHolder.jpg';
+String placeHolder = '${generalImagePath}placeHolder.png';

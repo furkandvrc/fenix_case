@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart' show PageRoute, RouteSettings;
 import 'package:flutter_base_project/app/navigation/route/page_route_builder.dart';
-import 'package:flutter_base_project/screens/main/search_results_screen/search_results_screen.dart';
 import 'package:flutter_base_project/screens/screens.dart';
 
 typedef PageRouteFun = PageRoute Function(RouteSettings);
