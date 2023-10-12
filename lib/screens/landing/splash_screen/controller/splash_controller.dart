@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_base_project/app/navigation/route/route.dart';
+import 'package:the_moive_db/app/navigation/route/route.dart';
 import 'package:get/get.dart';
-import 'package:flutter_base_project/app/extensions/context_extension.dart';
-import 'package:flutter_base_project/core/i10n/i10n.dart';
+import 'package:the_moive_db/app/extensions/context_extension.dart';
+import 'package:the_moive_db/core/i10n/i10n.dart';
 import '../../../../app/components/message/error_message_dialog.dart';
 
 class SplashController extends GetxController {

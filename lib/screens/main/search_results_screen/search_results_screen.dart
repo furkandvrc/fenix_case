@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/screens/main/search_results_screen/controller/search_results_controller.dart';
-import 'package:flutter_base_project/screens/main/search_results_screen/view/search_results.dart';
+import 'package:the_moive_db/screens/main/search_results_screen/controller/search_results_controller.dart';
+import 'package:the_moive_db/screens/main/search_results_screen/view/search_results.dart';
 import 'package:get/get.dart';
 
 class SearchResultsScreen extends StatelessWidget {

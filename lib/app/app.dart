@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:overlay_kit/overlay_kit.dart';
-import 'package:flutter_base_project/app/theme/color/app_colors.dart';
-import 'package:flutter_base_project/app/theme/theme.dart';
-import 'package:flutter_base_project/app/theme/themes/app_light_theme.dart';
-import 'package:flutter_base_project/core/i10n/i10n.dart';
+import 'package:the_moive_db/app/theme/color/app_colors.dart';
+import 'package:the_moive_db/app/theme/theme.dart';
+import 'package:the_moive_db/app/theme/themes/app_light_theme.dart';
+import 'package:the_moive_db/core/i10n/i10n.dart';
 import 'controllers/general/app_config_controller.dart';
 import 'libs/app/sip_state.dart';
 import 'navigation/history_observer/navigation_history_observer.dart';
-import 'package:flutter_base_project/app/navigation/route/route_factory.dart';
+import 'package:the_moive_db/app/navigation/route/route_factory.dart';
 import 'libs/app/size_config.dart';
 import 'theme/themes/app_dark_theme.dart';
 import '../core/i10n/default_localization.dart';
@@ -36,12 +36,7 @@ class App extends StatelessWidget {
               navigatorObservers: [NavigationHistoryObserver()],
               locale: sipState.locale,
               supportedLocales: getSupportedLocalList,
-              localizationsDelegates: [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                AppLocalization.delegate
-              ],
+              localizationsDelegates: [GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate, AppLocalization.delegate],
               builder: (BuildContext context, Widget? child) {
                 return MediaQuery(
                   data: MediaQuery.of(context).copyWith(textScaleFactor: 1),

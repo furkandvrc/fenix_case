@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/extensions/widgets_scale_extension.dart';
+import 'package:the_moive_db/app/extensions/widgets_scale_extension.dart';
 import '../../../../app/constants/other/padding_and_radius_size.dart';
 import '../controller/splash_controller.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flutter_base_project/core/i10n/default_localization.dart';
+import 'package:the_moive_db/core/i10n/default_localization.dart';
 
 class TrLocalization extends AppLocalizationLabel {
   const TrLocalization();
@@ -20,7 +20,7 @@ class TrLocalization extends AppLocalizationLabel {
 
   @override
   final String tryAgainBtnText = 'Tekrar Dene';
-  
+
   @override
   final String unknownPageRouteMessageText = 'Route bulunamadı...';
 

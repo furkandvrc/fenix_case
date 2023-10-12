@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter_base_project/core/exception/app_exception.dart';
+import 'package:the_moive_db/core/exception/app_exception.dart';
 import 'package:http/http.dart' as http;
 import '../../app/constants/enum/general_enum.dart' show HttpMethod;
 import '../../app/constants/app/http_url.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/bl/general.dart';
-import 'package:flutter_base_project/app/constants/enum/loading_status_enum.dart';
-import 'package:flutter_base_project/app/model/response/search_response_model.dart';
-import 'package:flutter_base_project/app/navigation/route/route.dart';
-import 'package:flutter_base_project/screens/main/home_screen/controller/home_controller.dart';
+import 'package:the_moive_db/app/bl/general.dart';
+import 'package:the_moive_db/app/constants/enum/loading_status_enum.dart';
+import 'package:the_moive_db/app/model/response/search_response_model.dart';
+import 'package:the_moive_db/app/navigation/route/route.dart';
+import 'package:the_moive_db/screens/main/home_screen/controller/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 

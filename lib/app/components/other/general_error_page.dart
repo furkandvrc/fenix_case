@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/constants/assets/assets.dart';
-import 'package:flutter_base_project/app/constants/other/padding_and_radius_size.dart';
+import 'package:the_moive_db/app/constants/assets/assets.dart';
+import 'package:the_moive_db/app/constants/other/padding_and_radius_size.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../theme/text_style/text_style.dart';
 import '../button/base_button.dart';

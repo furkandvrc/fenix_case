@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_base_project/app/navigation/route/route_factory.dart';
+import 'package:the_moive_db/app/navigation/route/route_factory.dart';
 import 'default_localization.dart';
 
 class AppLocalization<T extends AppLocalizationLabel> {

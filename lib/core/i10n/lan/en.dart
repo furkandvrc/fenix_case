@@ -1,8 +1,8 @@
-import 'package:flutter_base_project/core/i10n/default_localization.dart';
+import 'package:the_moive_db/core/i10n/default_localization.dart';
 
 class EnLocalization extends AppLocalizationLabel {
   const EnLocalization();
-  
+
   @override
   final String localizationTitle = 'English';
 

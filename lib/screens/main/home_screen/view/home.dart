@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/components/input_fields/search_field.dart';
-import 'package:flutter_base_project/app/constants/assets/assets.dart';
-import 'package:flutter_base_project/app/extensions/widgets_scale_extension.dart';
-import 'package:flutter_base_project/app/theme/text_style/text_style.dart';
-import 'package:flutter_base_project/screens/main/home_screen/view/components/search_widget.dart';
+import 'package:the_moive_db/app/components/input_fields/search_field.dart';
+import 'package:the_moive_db/app/constants/assets/assets.dart';
+import 'package:the_moive_db/app/extensions/widgets_scale_extension.dart';
+import 'package:the_moive_db/app/theme/text_style/text_style.dart';
+import 'package:the_moive_db/screens/main/home_screen/view/components/search_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../controller/home_controller.dart';

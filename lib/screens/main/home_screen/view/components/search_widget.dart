@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/extensions/widgets_scale_extension.dart';
-import 'package:flutter_base_project/app/theme/color/app_colors.dart';
+import 'package:the_moive_db/app/extensions/widgets_scale_extension.dart';
+import 'package:the_moive_db/app/theme/color/app_colors.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({super.key});

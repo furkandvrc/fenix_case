@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/theme/text_style/text_style.dart';
+import 'package:the_moive_db/app/theme/text_style/text_style.dart';
 import '../../constants/other/padding_and_radius_size.dart';
 
 /// Standart turkcell yatay button

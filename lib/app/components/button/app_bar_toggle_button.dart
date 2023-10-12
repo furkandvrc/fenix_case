@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_base_project/app/constants/other/padding_and_radius_size.dart';
-import 'package:flutter_base_project/app/extensions/widgets_scale_extension.dart';
+import 'package:the_moive_db/app/constants/other/padding_and_radius_size.dart';
+import 'package:the_moive_db/app/extensions/widgets_scale_extension.dart';
 import '../../theme/text_style/text_style.dart';
 import 'package:collection/collection.dart';
 
@@ -76,14 +76,7 @@ class _Button extends StatelessWidget {
   final Color selectedColor;
   final Color? textSelectedColor;
 
-  const _Button(
-      {Key? key,
-      required this.onPressed,
-      required this.selected,
-      required this.txt,
-      this.svgAssets,
-      required this.selectedColor,
-      this.textSelectedColor})
+  const _Button({Key? key, required this.onPressed, required this.selected, required this.txt, this.svgAssets, required this.selectedColor, this.textSelectedColor})
       : super(key: key);
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' show CircularProgressIndicator, ProgressIndicatorTheme;
 import 'package:overlay_kit/overlay_kit.dart';
-import 'package:flutter_base_project/app/navigation/route/route_factory.dart';
+import 'package:the_moive_db/app/navigation/route/route_factory.dart';
 
 class LoadingProgress {
   LoadingProgress.start() {

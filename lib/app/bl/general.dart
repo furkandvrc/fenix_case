@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter_base_project/app/constants/app/env.dart';
-import 'package:flutter_base_project/app/model/general/error_model.dart';
-import 'package:flutter_base_project/app/model/header/session_header_model.dart';
-import 'package:flutter_base_project/app/model/response/base_http_model.dart';
+import 'package:the_moive_db/app/constants/app/env.dart';
+import 'package:the_moive_db/app/model/general/error_model.dart';
+import 'package:the_moive_db/app/model/header/session_header_model.dart';
+import 'package:the_moive_db/app/model/response/base_http_model.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import '../constants/app/http_url.dart';
 import '../constants/enum/loading_status_enum.dart';

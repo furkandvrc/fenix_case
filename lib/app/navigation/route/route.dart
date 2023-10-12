@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' show PageRoute, RouteSettings;
-import 'package:flutter_base_project/app/navigation/route/page_route_builder.dart';
-import 'package:flutter_base_project/screens/screens.dart';
+import 'package:the_moive_db/app/navigation/route/page_route_builder.dart';
+import 'package:the_moive_db/screens/screens.dart';
 
 typedef PageRouteFun = PageRoute Function(RouteSettings);
 

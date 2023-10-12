@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/extensions/widgets_scale_extension.dart';
-import 'package:flutter_base_project/app/navigation/route/route_factory.dart';
+import 'package:the_moive_db/app/extensions/widgets_scale_extension.dart';
+import 'package:the_moive_db/app/navigation/route/route_factory.dart';
 
 /// Uygulama genelinde tüm text style ler buradan çekilmektedir
 /// İsimler 'Size - FontWight - Color' Formatında ayarlanmıştır

@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' show Locale;
-import 'package:flutter_base_project/app/libs/locale_manager/locale_manager.dart';
-import 'package:flutter_base_project/core/i10n/lan/tr.dart';
+import 'package:the_moive_db/app/libs/locale_manager/locale_manager.dart';
+import 'package:the_moive_db/core/i10n/lan/tr.dart';
 import '../../app/constants/enum/cache_key_enum.dart';
 import 'lan/en.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/extensions/widget_extension.dart';
+import 'package:the_moive_db/app/extensions/widget_extension.dart';
 
 abstract class DialogWidget<T> extends StatelessWidget {
   final EdgeInsets? padding;

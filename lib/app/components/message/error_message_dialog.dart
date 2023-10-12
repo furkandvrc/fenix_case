@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/core/i10n/i10n.dart';
+import 'package:the_moive_db/core/i10n/i10n.dart';
 import '../../constants/other/padding_and_radius_size.dart';
 import '../../constants/assets/assets.gen.dart';
-import 'package:flutter_base_project/app/navigation/route/route_factory.dart';
+import 'package:the_moive_db/app/navigation/route/route_factory.dart';
 import '../../theme/text_style/text_style.dart';
 import '../button/app_outline_button.dart';
 import '../dialog/dialog_widget.dart';

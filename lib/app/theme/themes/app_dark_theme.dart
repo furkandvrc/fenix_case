@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/app/constants/other/padding_and_radius_size.dart';
-import 'package:flutter_base_project/app/theme/color/app_colors.dart';
+import 'package:the_moive_db/app/constants/other/padding_and_radius_size.dart';
+import 'package:the_moive_db/app/theme/color/app_colors.dart';
 import '../../extensions/widgets_scale_extension.dart';
 import '../theme.dart';
 
 class AppDarkTheme implements AppTheme {
-  
   AppDarkTheme({AppColors? AppColors});
 
   @override

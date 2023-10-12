@@ -1,5 +1,5 @@
-import 'package:flutter_base_project/app/app.dart';
-import 'package:flutter_base_project/app/main/bootstrap/bootstrap.dart';
+import 'package:the_moive_db/app/app.dart';
+import 'package:the_moive_db/app/main/bootstrap/bootstrap.dart';
 import '../constants/app/app_constant.dart';
 import '../constants/app/http_url.dart';
 import '../constants/enum/general_enum.dart';
