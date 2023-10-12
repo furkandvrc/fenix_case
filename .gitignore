@@ -42,6 +42,7 @@ target/
 .pub/
 build/
 coverage/
+lib/app/constants/app/env.dart
 
 # Unit test reports
 TEST*.xml
