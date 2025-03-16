@@ -1,6 +1,6 @@
 # TMDB Movie App
 
-Bu uygulama, TMDB (The Movie Database) API'sini kullanarak film aramayı ve favori filmleri yönetmeyi sağlayan bir Flutter uygulamasıdır.
+TMDB API kullanılarak geliştirilmiş, film arama ve favori yönetimi yapabileceğiniz modern bir Flutter uygulaması.
 
 ## Özellikler
 
@@ -8,48 +8,55 @@ Bu uygulama, TMDB (The Movie Database) API'sini kullanarak film aramayı ve favo
 - 🔍 Film arama
 - ❤️ Favori filmleri yerel olarak kaydetme
 - 📱 Responsive tasarım
-- ♾️ Sonsuz scroll ile sayfalama
-- 🎨 Modern ve kullanıcı dostu arayüz
+- ♾️ Sonsuz kaydırma (Infinite scroll)
+- 🎯 Modern UI/UX
+
+## Ekran Görüntüleri
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-16 at 20.09.33.png" width="250" alt="Ana Ekran"/>
+  <img src="assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-16 at 20.09.36.png" width="250" alt="Film Detay"/>
+  <img src="assets/Simulator Screenshot - iPhone 16 Pro - 2025-03-16 at 20.09.39.png" width="250" alt="Favoriler"/>
+</div>
 
 ## Teknik Özellikler
 
 ### Mimari
-- Clean Architecture prensiplerine uygun yapı
-- Repository pattern kullanımı
+- Clean Architecture prensipleri
+- Repository pattern
 - GetX state management
 - Dependency injection
 
 ### Kullanılan Teknolojiler
+
 - Flutter
 - GetX (State Management)
 - Dio (HTTP Client)
 - SharedPreferences (Yerel Depolama)
 - CachedNetworkImage (Görsel Önbellekleme)
 
-### Proje Yapısı
+## Proje Yapısı
 
 ```
 lib/
-  ├── core/
-  │   ├── constants/
-  │   └── network/
-  ├── data/
-  │   ├── models/
-  │   └── repositories/
-  ├── domain/
-  │   ├── entities/
-  │   └── repositories/
-  └── presentation/
-      ├── controllers/
-      ├── screens/
-      └── widgets/
+├── core/                   # Çekirdek fonksiyonlar ve utility'ler
+├── data/                   # Data katmanı
+│   ├── models/            # Data modelleri
+│   └── repositories/      # Repository implementasyonları
+├── domain/                # Domain katmanı
+│   ├── entities/          # Domain entity'leri
+│   └── repositories/      # Repository interface'leri
+└── presentation/          # Sunum katmanı
+    ├── controllers/       # GetX controllers
+    ├── screens/           # Ekranlar
+    └── widgets/           # Yeniden kullanılabilir widget'lar
 ```
 
 ## Kurulum
 
-1. Projeyi klonlayın:
+1. Repository'yi klonlayın:
 ```bash
-git clone https://github.com/YOUR_USERNAME/fenix_case.git
+git clone https://github.com/furkandvrc/fenix_case.git
 ```
 
 2. Bağımlılıkları yükleyin:
@@ -62,17 +69,12 @@ flutter pub get
 flutter run
 ```
 
-## Ekran Görüntüleri
-
-[Ekran görüntüleri buraya eklenecek]
-
 ## API Kullanımı
 
-Uygulama TMDB API'sini kullanmaktadır. Kullanılan endpoint'ler:
+Bu uygulama TMDB API'sini kullanmaktadır. Aşağıdaki endpoint'ler kullanılmıştır:
 
-- Popüler Filmler: `/movie/top_rated`
-- Film Arama: `/search/movie`
-- Film Detayları: `/movie/{movie_id}`
+- `/movie/popular` - Popüler filmleri listeler
+- `/search/movie` - Film araması yapar
 
 ## Geliştirici
 
