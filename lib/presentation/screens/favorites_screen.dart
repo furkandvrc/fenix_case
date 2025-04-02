@@ -1,46 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../controllers/movie_controller.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../cubit/movie_cubit.dart';
 import '../widgets/movie_card.dart';
-import 'movie_detail_screen.dart';
 
-class FavoritesScreen extends StatelessWidget {
-  final MovieController controller = Get.find<MovieController>();
+class FavoritesScreen extends StatefulWidget {
+  const FavoritesScreen({super.key});
 
-  FavoritesScreen({super.key});
+  @override
+  State<FavoritesScreen> createState() => _FavoritesScreenState();
+}
+
+class _FavoritesScreenState extends State<FavoritesScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<MovieCubit>().getFavorites();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorites'),
+        title: const Text('Favoriler'),
       ),
-      body: Obx(() {
-        if (controller.favoriteMovies.isEmpty) {
-          return const Center(
-            child: Text('No favorite movies yet'),
-          );
-        }
+      body: BlocBuilder<MovieCubit, MovieState>(
+        builder: (context, state) {
+          if (state.status == MovieStatus.initial) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-        return GridView.builder(
-          padding: const EdgeInsets.all(8),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.6,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-          ),
-          itemCount: controller.favoriteMovies.length,
-          itemBuilder: (context, index) {
-            final movie = controller.favoriteMovies[index];
-            return MovieCard(
-              movie: movie,
-              onTap: () => Get.to(() => MovieDetailScreen(movie: movie)),
-              onFavoritePressed: () => controller.toggleFavorite(movie),
-            );
-          },
-        );
-      }),
+          if (state.status == MovieStatus.error) {
+            return Center(child: Text(state.message ?? 'Bir hata oluştu'));
+          }
+
+          if (state.movies.isEmpty) {
+            return const Center(child: Text('Henüz favori film eklenmemiş'));
+          }
+
+          return GridView.builder(
+            padding: const EdgeInsets.all(16),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.7,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 16,
+            ),
+            itemCount: state.movies.length,
+            itemBuilder: (context, index) {
+              final movie = state.movies[index];
+              return MovieCard(
+                key: ValueKey(movie.id),
+                movie: movie,
+                onTap: () {
+                  context.read<MovieCubit>().toggleFavorite(movie);
+                },
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

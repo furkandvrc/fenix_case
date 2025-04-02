@@ -1,99 +1,124 @@
+import 'dart:convert';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../core/constants/api_constants.dart';
-import '../../core/network/dio_client.dart';
+import '../../core/error/failures.dart';
 import '../../domain/entities/movie.dart';
 import '../../domain/repositories/movie_repository.dart';
 import '../models/movie_model.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
-  final Dio _dio = DioClient.instance;
+  final Dio _dio;
   final SharedPreferences _prefs;
-  final String _favoritesKey = 'favorite_movies';
+  static const String _favoritesKey = 'favorites';
 
-  MovieRepositoryImpl(this._prefs);
+  MovieRepositoryImpl(this._dio, this._prefs);
 
   @override
-  Future<List<Movie>> getTopRatedMovies({int page = 1}) async {
+  Future<Either<Failure, List<Movie>>> getMovies(int page) async {
     try {
       final response = await _dio.get(
-        ApiConstants.topRatedMovies,
+        '/movie/popular',
         queryParameters: {'page': page},
       );
-      final List<dynamic> results = response.data['results'];
-      final movies = results.map((json) => MovieModel.fromJson(json).toEntity()).toList();
-      return _attachFavoriteStatus(movies);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> results = response.data['results'];
+        final movies = results.map((json) => MovieModel.fromJson(json)).map((model) => model.toEntity()).toList();
+
+        final favorites = await _getFavoriteIds();
+        return Right(movies.map((movie) {
+          return movie.copyWith(isFavorite: favorites.contains(movie.id));
+        }).toList());
+      } else {
+        return const Left(ServerFailure('Failed to fetch movies'));
+      }
     } catch (e) {
-      throw Exception('Failed to fetch top rated movies');
+      return Left(ServerFailure(e.toString()));
     }
   }
 
   @override
-  Future<List<Movie>> searchMovies(String query, {int page = 1}) async {
+  Future<Either<Failure, List<Movie>>> searchMovies(String query) async {
     try {
       final response = await _dio.get(
-        ApiConstants.searchMovies,
-        queryParameters: {
-          'query': query,
-          'page': page,
-        },
+        '/search/movie',
+        queryParameters: {'query': query},
       );
-      final List<dynamic> results = response.data['results'];
-      final movies = results.map((json) => MovieModel.fromJson(json).toEntity()).toList();
-      return _attachFavoriteStatus(movies);
-    } catch (e) {
-      throw Exception('Failed to search movies');
-    }
-  }
 
-  @override
-  Future<Movie> getMovieDetails(int id) async {
-    try {
-      final response = await _dio.get('${ApiConstants.movieDetails}/$id');
-      final movie = MovieModel.fromJson(response.data).toEntity();
-      return _attachFavoriteStatus([movie]).first;
-    } catch (e) {
-      throw Exception('Failed to fetch movie details');
-    }
-  }
+      if (response.statusCode == 200) {
+        final List<dynamic> results = response.data['results'];
+        final movies = results.map((json) => MovieModel.fromJson(json)).map((model) => model.toEntity()).toList();
 
-  @override
-  Future<List<Movie>> getFavoriteMovies() async {
-    final favoriteIds = _getFavoriteIds();
-    final List<Movie> favoriteMovies = [];
-
-    for (final id in favoriteIds) {
-      try {
-        final movie = await getMovieDetails(id);
-        favoriteMovies.add(movie.copyWith(isFavorite: true));
-      } catch (e) {
-        print('Failed to fetch favorite movie with id: $id');
+        final favorites = await _getFavoriteIds();
+        return Right(movies.map((movie) {
+          return movie.copyWith(isFavorite: favorites.contains(movie.id));
+        }).toList());
+      } else {
+        return const Left(ServerFailure('Failed to search movies'));
       }
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
     }
-
-    return favoriteMovies;
   }
 
   @override
-  Future<void> toggleFavorite(Movie movie) async {
-    final favoriteIds = _getFavoriteIds();
-
-    if (favoriteIds.contains(movie.id)) {
-      favoriteIds.remove(movie.id);
-    } else {
-      favoriteIds.add(movie.id);
+  Future<Either<Failure, List<Movie>>> getFavorites() async {
+    try {
+      final favorites = await _getFavoriteMovies();
+      return Right(favorites);
+    } catch (e) {
+      return Left(CacheFailure(e.toString()));
     }
-
-    await _prefs.setStringList(_favoritesKey, favoriteIds.map((id) => id.toString()).toList());
   }
 
-  Set<int> _getFavoriteIds() {
-    final List<String> favoriteIdsStr = _prefs.getStringList(_favoritesKey) ?? [];
-    return favoriteIdsStr.map((idStr) => int.parse(idStr)).toSet();
+  @override
+  Future<Either<Failure, Movie>> toggleFavorite(Movie movie) async {
+    try {
+      final favorites = await _getFavoriteMovies();
+      final index = favorites.indexWhere((m) => m.id == movie.id);
+
+      if (index >= 0) {
+        favorites.removeAt(index);
+        final updatedMovie = movie.copyWith(isFavorite: false);
+        await _saveFavoriteMovies(favorites);
+        return Right(updatedMovie);
+      } else {
+        final updatedMovie = movie.copyWith(isFavorite: true);
+        favorites.add(updatedMovie);
+        await _saveFavoriteMovies(favorites);
+        return Right(updatedMovie);
+      }
+    } catch (e) {
+      return Left(CacheFailure(e.toString()));
+    }
   }
 
-  List<Movie> _attachFavoriteStatus(List<Movie> movies) {
-    final favoriteIds = _getFavoriteIds();
-    return movies.map((movie) => movie.copyWith(isFavorite: favoriteIds.contains(movie.id))).toList();
+  Future<List<int>> _getFavoriteIds() async {
+    final favorites = await _getFavoriteMovies();
+    return favorites.map((movie) => movie.id).toList();
+  }
+
+  Future<List<Movie>> _getFavoriteMovies() async {
+    final String? jsonString = _prefs.getString(_favoritesKey);
+    if (jsonString == null) return [];
+
+    final List<dynamic> jsonList = json.decode(jsonString);
+    return jsonList.map((json) => MovieModel.fromJson(json).toEntity()).toList();
+  }
+
+  Future<void> _saveFavoriteMovies(List<Movie> movies) async {
+    final jsonList = movies.map((movie) => MovieModel.fromEntity(movie).toJson()).toList();
+    await _prefs.setString(_favoritesKey, json.encode(jsonList));
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getPopularMovies() async {
+    return getMovies(1);
+  }
+
+  @override
+  Future<Either<Failure, List<Movie>>> getFavoriteMovies() async {
+    return getFavorites();
   }
 }

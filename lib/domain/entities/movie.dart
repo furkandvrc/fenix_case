@@ -1,29 +1,46 @@
-class Movie {
+import 'package:equatable/equatable.dart';
+
+class Movie extends Equatable {
   final int id;
   final String title;
   final String overview;
   final String posterPath;
-  final String releaseDate;
+  final String backdropPath;
   final double voteAverage;
+  final String releaseDate;
   final bool isFavorite;
 
-  Movie({
+  const Movie({
     required this.id,
     required this.title,
     required this.overview,
     required this.posterPath,
-    required this.releaseDate,
+    required this.backdropPath,
     required this.voteAverage,
+    required this.releaseDate,
     this.isFavorite = false,
   });
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        overview,
+        posterPath,
+        backdropPath,
+        voteAverage,
+        releaseDate,
+        isFavorite,
+      ];
 
   Movie copyWith({
     int? id,
     String? title,
     String? overview,
     String? posterPath,
-    String? releaseDate,
+    String? backdropPath,
     double? voteAverage,
+    String? releaseDate,
     bool? isFavorite,
   }) {
     return Movie(
@@ -31,8 +48,9 @@ class Movie {
       title: title ?? this.title,
       overview: overview ?? this.overview,
       posterPath: posterPath ?? this.posterPath,
-      releaseDate: releaseDate ?? this.releaseDate,
+      backdropPath: backdropPath ?? this.backdropPath,
       voteAverage: voteAverage ?? this.voteAverage,
+      releaseDate: releaseDate ?? this.releaseDate,
       isFavorite: isFavorite ?? this.isFavorite,
     );
   }
